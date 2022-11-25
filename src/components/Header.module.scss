@@ -1,0 +1,62 @@
+.mainHeader {
+  width: 100%;
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  background: #2ddf5c;
+  padding: 0.2rem 1rem;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-area: header;
+}
+
+.toggleButton {
+  width: 3rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding-top: 0;
+  padding-bottom: 0;
+  vertical-align: middle;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.toggleButton__bar {
+  width: 100%;
+  height: 0.2rem;
+  background: black;
+  display: block;
+  margin: 0.6rem 0;
+}
+
+.mainNav__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.mainNav__item {
+  margin: 0 1rem;
+  padding: 0;
+  a {
+    text-decoration: none;
+    color: #0e4f1f;
+    font-weight: bold;
+    padding: 0.2rem 0;
+    &:hover {
+      color: white;
+      border-bottom: 5px solid white;
+    }
+  }
+
+  .active {
+    color: white;
+    border-bottom: 5px solid white;
+  }
+}
