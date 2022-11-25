@@ -7,6 +7,7 @@ const MovieList: React.FC = (props) => {
   const ctx = useContext(SearchContext);
   return (
     <ul>
+      List
       {ctx.fetchedMovies.map((item) => (
         <MovieListItem movie={item} />
       ))}

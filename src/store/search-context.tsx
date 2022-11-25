@@ -19,6 +19,7 @@ const SearchContextProvider: React.FC<{ children: React.ReactNode }> = (
 
   const addMoviesHandler = (movies: MovieItem[]) => {
     setFetchedMovies([...fetchedMovies, ...movies]);
+    console.log(fetchedMovies);
   };
 
   return (

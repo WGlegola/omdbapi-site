@@ -4,6 +4,7 @@ import { SearchContext } from "../store/search-context";
 import { StringMappingType } from "typescript";
 import MovieListItem from "./MovieListItem";
 import MovieItem from "../models/movie-item";
+import { Outlet, useNavigate } from "react-router-dom";
 
 type SearchResponse = {
   Search: {
@@ -11,7 +12,7 @@ type SearchResponse = {
     Title: string;
     Type: string;
     Year: number;
-    imdbId: string;
+    imdbID: string;
   }[];
   totalResults: number;
   Response: boolean;
@@ -26,6 +27,8 @@ const SearchForm = (props) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
   const [enteredNameIsTouched, setEnteredNameIsTouched] = useState(false);
+
+  const navigate = useNavigate();
 
   const nameInputChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -54,39 +57,43 @@ const SearchForm = (props) => {
             title: movie.Title,
             posterUrl: movie.Poster,
             year: movie.Year,
-            id: movie.imdbId,
+            id: movie.imdbID,
             type: movie.Type,
           }))
         );
       });
+    navigate("/search", { replace: true });
   };
 
   return (
-    <form onSubmit={formSubmissionHandler}>
-      <div className="form-control">
-        <label htmlFor="name">Movie Name</label>
-        <input type="text" id="name" onChange={nameInputChangeHandler} />
-        {!enteredNameIsValid && (
-          <p className="error-text">Name must not be empty.</p>
-        )}
-      </div>
-      <div className="form-control">
-        <label htmlFor="type">Type</label>
-        <select name="Type" id="type">
-          <option value="any">Any</option>
-          <option value="movie">Movie</option>
-          <option value="series">Series</option>
-          <option value="episode">Episode</option>
-        </select>
-      </div>
-      <div className="form-control">
-        <label htmlFor="year">Year</label>
-        <input id="year" type="number" min="1900" max="2099" step="1" />
-      </div>
-      <div className="form-actions">
-        <button>Submit</button>
-      </div>
-    </form>
+    <React.Fragment>
+      <form onSubmit={formSubmissionHandler}>
+        <div className="form-control">
+          <label htmlFor="name">Movie Name</label>
+          <input type="text" id="name" onChange={nameInputChangeHandler} />
+          {!enteredNameIsValid && (
+            <p className="error-text">Name must not be empty.</p>
+          )}
+        </div>
+        <div className="form-control">
+          <label htmlFor="type">Type</label>
+          <select name="Type" id="type">
+            <option value="any">Any</option>
+            <option value="movie">Movie</option>
+            <option value="series">Series</option>
+            <option value="episode">Episode</option>
+          </select>
+        </div>
+        <div className="form-control">
+          <label htmlFor="year">Year</label>
+          <input id="year" type="number" min="1900" max="2099" step="1" />
+        </div>
+        <div className="form-actions">
+          <button>Submit</button>
+        </div>
+      </form>
+      <Outlet />
+    </React.Fragment>
   );
 };
 
