@@ -24,8 +24,8 @@ import RootElement from "./pages/RootElement";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootElement />}>
-      <Route path="/search/*" element={<MoviePane />}>
+    <Route path="/omdbapi-site/" element={<RootElement />}>
+      <Route path="search/*" element={<MoviePane />}>
         <Route
           path=":movieId"
           element={<MovieSummary />}
