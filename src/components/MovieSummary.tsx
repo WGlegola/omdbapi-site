@@ -110,7 +110,7 @@ export default MovieSummary;
 
 export async function loader(params) {
   const response = await fetch(
-    `http://www.omdbapi.com/?apikey=64e502b&i=${params.params.movieId}&plot=full`
+    `https://www.omdbapi.com/?apikey=64e502b&i=${params.params.movieId}&plot=full`
   );
   if (!response.ok) {
     throw new Error("Something went wrong");

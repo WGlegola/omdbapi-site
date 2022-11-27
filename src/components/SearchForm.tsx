@@ -44,7 +44,7 @@ const SearchForm = (props) => {
     console.log(enteredName);
     //TODO react env for key
     setIsLoading(true);
-    fetch(`http://www.omdbapi.com/?apikey=64e502b&s=${enteredName}`)
+    fetch(`https://www.omdbapi.com/?apikey=64e502b&s=${enteredName}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Something went wrong");
