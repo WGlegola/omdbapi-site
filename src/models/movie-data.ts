@@ -1,4 +1,5 @@
 type MovieData = {
+  awards: string;
   title: string;
   year: number;
   rated: string;
@@ -11,9 +12,8 @@ type MovieData = {
   plot: string;
   language: string;
   country: string;
-  awards: string;
   posterUrl: string;
-  ratings: { source: string; value: string }[];
+  ratings?: { source: string; value: string }[];
   metascore: number;
   imdbRating: number;
   imdbVotes: string;

@@ -7,7 +7,6 @@ const MoviePane = (props) => {
   const [pickedMovie, setPickedMovie] = useState(null);
   return (
     <React.Fragment>
-      Pane
       <MovieList />
       <Outlet />
     </React.Fragment>

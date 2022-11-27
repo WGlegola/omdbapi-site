@@ -1,0 +1,48 @@
+@use "../models/global-styles.scss" as *;
+.stat-row {
+  display: grid;
+  grid-template-areas: "key value";
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 2fr;
+  width: 100%;
+  height: auto;
+  // border-top-left-radius: 1rem;
+  // border-bottom-left-radius: 1rem;
+  padding-top: 4px; //
+  padding-bottom: 4px; //
+  line-height: 2rem;
+}
+
+.stat-key {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
+  grid-area: key;
+  background-color: $BROWN;
+  border-bottom-left-radius: 1rem;
+  border-top-left-radius: 1rem;
+  span {
+    display: block;
+    margin: auto;
+    text-align: center;
+    color: white;
+  }
+}
+
+.stat-value {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
+  grid-area: value;
+  background-color: $BACKGROUNDGRAY;
+  border-bottom-right-radius: 1rem;
+  border-top-right-radius: 1rem;
+
+  span {
+    display: block;
+    margin: auto;
+    text-align: center;
+  }
+}

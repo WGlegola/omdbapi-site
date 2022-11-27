@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { store } from "./app/store";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import "./index.css";
+import "./index.scss";
 import SearchContextProvider from "./store/search-context";
 import { BrowserRouter } from "react-router-dom";
 
@@ -14,9 +14,9 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <SearchContextProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      {/* <Provider store={store}> */}
+      <App />
+      {/* </Provider> */}
     </SearchContextProvider>
   </React.StrictMode>
 );

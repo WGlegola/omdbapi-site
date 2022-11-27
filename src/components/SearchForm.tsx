@@ -5,6 +5,9 @@ import { StringMappingType } from "typescript";
 import MovieListItem from "./MovieListItem";
 import MovieItem from "../models/movie-item";
 import { Outlet, useNavigate } from "react-router-dom";
+import styles from "./SearchForm.module.scss";
+
+import Button from "@mui/material/Button";
 
 type SearchResponse = {
   Search: {
@@ -66,34 +69,45 @@ const SearchForm = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <div className={styles["search-box"]}>
       <form onSubmit={formSubmissionHandler}>
-        <div className="form-control">
+        <div className={styles["form-control"]}>
           <label htmlFor="name">Movie Name</label>
-          <input type="text" id="name" onChange={nameInputChangeHandler} />
+          <input
+            type="text"
+            id="name"
+            onChange={nameInputChangeHandler}
+            placeholder="Movie Name"
+          />
           {!enteredNameIsValid && (
             <p className="error-text">Name must not be empty.</p>
           )}
         </div>
-        <div className="form-control">
+        <div className={styles["form-control"]}>
           <label htmlFor="type">Type</label>
-          <select name="Type" id="type">
+          <select name="Type" id="type" placeholder="Type">
             <option value="any">Any</option>
             <option value="movie">Movie</option>
             <option value="series">Series</option>
             <option value="episode">Episode</option>
           </select>
         </div>
-        <div className="form-control">
+        <div className={styles["form-control"]}>
           <label htmlFor="year">Year</label>
-          <input id="year" type="number" min="1900" max="2099" step="1" />
+          <input
+            id="year"
+            type="number"
+            min="1900"
+            max="2099"
+            step="1"
+            placeholder="Year"
+          />
         </div>
-        <div className="form-actions">
-          <button>Submit</button>
+        <div className={styles["form-control"]}>
+          <input type="submit" value="Submit" />
         </div>
       </form>
-      <Outlet />
-    </React.Fragment>
+    </div>
   );
 };
 

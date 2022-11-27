@@ -1,0 +1,110 @@
+@use "../models/global-styles.scss" as *;
+
+.search-box {
+  border-radius: 15px;
+  background-color: $BACKGROUNDGRAY;
+  padding: 1rem;
+  width: 70vw;
+  margin: auto;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  width: 100%;
+  background-color: $ORANGE;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $BROWN;
+  }
+}
+
+// .search-box {
+//   height: inherit;
+//   background-color: red;
+//   width: 80%;
+//   margin: auto;
+//   // display: flex;
+//   // justify-content: space-around;
+//   // flex-direction: row;
+//   // align-content: center;
+// }
+
+// .form-control {
+//   margin: auto;
+//   display: inline-block;
+//   flex-grow: 1;
+//   width: 200px;
+//   align-items: center;
+//   padding: 10px;
+//   label {
+//     font-weight: bold;
+//     display: block;
+//     margin-bottom: 0.5rem;
+//   }
+//   input {
+//     display: inline;
+//     width: 100%;
+//     border: 1px solid #ccc;
+//     font: inherit;
+//     line-height: 1.5rem;
+//     padding: 0 0.25rem;
+
+//     &:focus {
+//       outline: none;
+//       background: #fad0ec;
+//       border-color: #8b005d;
+//     }
+//   }
+//   &.invalid {
+//     input {
+//       border-color: red;
+//       background: #ffd7d7;
+//     }
+//     label {
+//       color: red;
+//     }
+//   }
+// }
+
+// .button {
+//   width: 100%;
+//   font: inherit;
+//   padding: 0.5rem 1.5rem;
+//   border: 1px solid #8b005d;
+//   color: white;
+//   background: #8b005d;
+//   box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
+//   cursor: pointer;
+//   &:focus {
+//     outline: none;
+//   }
+//   &:hover,
+//   &:active {
+//     background: #ac0e77;
+//     border-color: #ac0e77;
+//     box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+//   }
+// }
+
+// @media (min-width: 768px) {
+//   .button {
+//     width: auto;
+//   }
+// }

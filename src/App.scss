@@ -1,3 +1,13 @@
+@use "./models/global-styles.scss" as colors;
+
+main {
+  /* grid-row: 2 / 3; */
+  /* grid-area: main; */
+  padding: auto;
+  margin: auto;
+  background: colors.$DARKBLUE;
+}
+
 .App {
   text-align: center;
 }
