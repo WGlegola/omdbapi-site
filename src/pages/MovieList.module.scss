@@ -1,0 +1,32 @@
+@use "../models/global-styles.scss" as *;
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: space-around;
+  margin: auto;
+  width: 80vw;
+  padding: 0;
+  border-radius: 1rem;
+}
+
+.text-box {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  color: $SEA;
+  font-size: 2rem;
+}
+
+.back-button {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  color: $SEA;
+  margin: 1rem;
+  font-size: 3rem;
+  &:hover {
+    color: $DARKERSEA;
+  }
+}

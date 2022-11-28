@@ -1,12 +1,20 @@
 @use "../models/global-styles.scss" as *;
 
 .anchor-wrapper {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
 }
 
 .anchor-wrapper a {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   text-decoration: none;
   :hover {
@@ -28,17 +36,15 @@
 }
 
 .poster-container {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
-  // max-width: 4rem;
   margin: auto;
-  // display: inline-block;
 }
 .poster {
   width: 100%;
-  // display: inline-block;
   margin: auto;
   border-radius: 1rem;
-  // margin-top: 1rem;
 }
 .chip-container {
   position: absolute;

@@ -1,4 +1,5 @@
 @use "../models/global-styles.scss" as *;
+
 .welcome-text {
   display: flex;
   align-self: center;
@@ -16,21 +17,12 @@
     $DARKERSEA 2vw 3vw,
     $SEA 4vw 5vw
   );
-  //   background-image: repeating-linear-gradient(
-  //     -45deg,
-  //     $ORANGE 0 25px,
-  //     $BROWN 25px 50px,
-  //     $DARKERSEA 50px 75px,
-  //     $SEA 75px 100px
-  //   );
 
   b {
     margin: auto;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
     height: fit-content;
     font-size: 9vmin;
-    // 8vw);
   }
-}
-
-.search-form-container {
 }

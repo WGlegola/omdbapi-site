@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./StatRow.module.scss";
+
 const StatRow: React.FC<{ description: string; value: string }> = (props) => {
   return (
     <div className={styles["stat-row"]}>

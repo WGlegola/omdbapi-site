@@ -1,5 +1,4 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 import SearchForm from "../components/SearchForm";
 import styles from "./WelcomePage.module.scss";
 

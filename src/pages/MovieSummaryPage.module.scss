@@ -2,17 +2,6 @@
 
 .summary-container {
   display: block;
-  // grid-template-areas:
-  //   "header"
-  //   "poster"
-  //   "chip"
-  //   "score"
-  //   "main"
-  //   "people"
-  //   "stats";
-  // grid-template-rows: auto auto auto auto auto auto;
-  // grid-template-columns: 1fr;
-  // background-color: $DARKBLUE;
   width: 100%;
   margin: auto;
   @media (min-width: $mobile-threshold) {
@@ -36,7 +25,6 @@
     grid-template-columns: 3rem 1fr;
   }
 
-  // margin: 1rem;
   grid-area: header;
   color: $ORANGE;
   text-align: center;
@@ -81,6 +69,8 @@
   $BACKGROUNDCOLOR: $GRAY;
   grid-area: right;
   background-color: $BACKGROUNDCOLOR;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   border-radius: 1rem;
   margin: 1rem;
@@ -116,7 +106,6 @@
   margin-top: 1rem;
   display: inline-flex;
   flex-direction: column;
-  // align-items: center;
   text-align: center;
   font-size: 5rem;
   svg {
@@ -160,8 +149,5 @@
 }
 
 .stats-container {
-  // display: flex;
-  // flex-wrap: wrap;
-  // justify-content: space-around;
   margin: 1rem;
 }

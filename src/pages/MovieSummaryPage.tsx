@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import MovieData from "../models/movie-data";
 import Chip from "../components/Chip";
 import styles from "./MovieSummaryPage.module.scss";
@@ -10,12 +10,8 @@ import CalendarMonthSharpIcon from "@mui/icons-material/CalendarMonthSharp";
 import StarSharpIcon from "@mui/icons-material/StarSharp";
 import FolderCopySharpIcon from "@mui/icons-material/FolderCopySharp";
 import StatRow from "../components/StatRow";
-import Person2SharpIcon from "@mui/icons-material/Person2Sharp";
-import ArrowBackSharpIcon from "@mui/icons-material/ArrowBackSharp";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import { Link } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-// import { Chip } from "@mui/material";
 
 const MovieSummary: React.FC = (props) => {
   const loaderData = useLoaderData() as MovieData;

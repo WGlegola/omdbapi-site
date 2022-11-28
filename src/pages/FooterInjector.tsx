@@ -1,15 +1,9 @@
-import React, { useEffect } from "react";
-import { ReactReduxContext } from "react-redux";
-import { Outlet, redirect, useLocation, useNavigate } from "react-router-dom";
-import SearchForm from "../components/SearchForm";
+import React from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import styles from "./FooterInjector.module.scss";
 import WelcomePage from "./WelcomePage";
 
 const FooterInjector: React.FC<{ children?: React.ReactNode }> = (props) => {
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   navigate("welcome");
-  // });
   const location = useLocation();
   return (
     <React.Fragment>
