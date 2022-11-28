@@ -1,6 +1,5 @@
 {
   "name": "omdbapi-site",
-  "homepage": "http://WGlegola.github.io/omdbapi-site",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
