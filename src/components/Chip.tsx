@@ -4,12 +4,19 @@ import { Tooltip } from "@mui/material";
 const Chip: React.FC<{
   children?: React.ReactNode;
   content: string | number;
+  tooltip?: string;
 }> = (props) => {
   return (
-    <Tooltip title="XDDD">
+    <Tooltip
+      title={props.tooltip}
+      arrow
+      placement="top"
+      disableFocusListener
+      followCursor
+    >
       <div className={styles["chip"]}>
         {props.children}
-        {props.content}
+        <p>{props.content}</p>
       </div>
     </Tooltip>
   );

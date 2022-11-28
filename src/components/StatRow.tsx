@@ -4,13 +4,9 @@ const StatRow: React.FC<{ description: string; value: string }> = (props) => {
   return (
     <div className={styles["stat-row"]}>
       <div className={styles["stat-key"]}>
-        <span>
-          <b>{props.description}</b>
-        </span>
+        <b>{props.description}</b>
       </div>
-      <div className={styles["stat-value"]}>
-        <span>{props.value}</span>
-      </div>
+      <div className={styles["stat-value"]}>{props.value}</div>
     </div>
   );
 };

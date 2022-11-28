@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
 import MovieList from "./MovieList";
-import MovieSummary from "./MovieSummary";
+import MovieSummary from "../pages/MovieSummaryPage";
 
 const MoviePane = (props) => {
   const [pickedMovie, setPickedMovie] = useState(null);

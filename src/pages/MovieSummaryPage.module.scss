@@ -1,0 +1,167 @@
+@use "../models/global-styles.scss" as *;
+
+.summary-container {
+  display: block;
+  // grid-template-areas:
+  //   "header"
+  //   "poster"
+  //   "chip"
+  //   "score"
+  //   "main"
+  //   "people"
+  //   "stats";
+  // grid-template-rows: auto auto auto auto auto auto;
+  // grid-template-columns: 1fr;
+  // background-color: $DARKBLUE;
+  width: 100%;
+  margin: auto;
+  @media (min-width: $mobile-threshold) {
+    display: grid;
+    grid-template-areas:
+      "header header header "
+      "left main right";
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 1rem;
+    width: 90vw;
+  }
+}
+
+.header-container {
+  display: grid;
+  grid-template-areas: "back headerText";
+  grid-template-rows: auto;
+  grid-template-columns: 5rem 1fr;
+  @media (min-width: $mobile-threshold) {
+    grid-template-columns: 3rem 1fr;
+  }
+
+  // margin: 1rem;
+  grid-area: header;
+  color: $ORANGE;
+  text-align: center;
+  .back-button {
+    color: $SEA;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 3rem;
+    &:hover {
+      color: $DARKERSEA;
+    }
+  }
+}
+
+.poster-chip-wrapper {
+  grid-area: left;
+}
+
+.poster-container {
+  text-align: center;
+  img {
+    display: block;
+    width: 80%;
+    height: auto;
+    margin: auto;
+    border-radius: 1rem;
+    @media (min-width: $mobile-threshold) {
+      width: 100%;
+    }
+  }
+}
+
+.chip-container {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-self: flex-start;
+}
+
+.score-container {
+  $BACKGROUNDCOLOR: $GRAY;
+  grid-area: right;
+  background-color: $BACKGROUNDCOLOR;
+  height: fit-content;
+  border-radius: 1rem;
+  margin: 1rem;
+  color: $DARKERSEA;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  p {
+    color: $SEA;
+    margin: 0 0.5rem 0 0.5rem;
+  }
+  .stats-container {
+    flex-basis: 100%;
+  }
+  //StatRow access walk around
+  > div > div {
+    > div:first-child {
+      background-color: $DARKERSEA;
+    }
+    > div {
+      border-color: $DARKERSEA;
+
+      background-color: $BACKGROUNDCOLOR;
+      color: white;
+    }
+  }
+  @media (min-width: $mobile-threshold) {
+    margin: 0;
+  }
+}
+
+.featured-stat {
+  margin-top: 1rem;
+  display: inline-flex;
+  flex-direction: column;
+  // align-items: center;
+  text-align: center;
+  font-size: 5rem;
+  svg {
+    margin: auto;
+  }
+  p {
+    font-size: 2rem;
+  }
+}
+
+.main-section-container {
+  grid-area: main;
+  background-color: transparent;
+  border-radius: 1rem;
+
+  @media (min-width: $mobile-threshold) {
+    background-color: $BACKGROUNDGRAY;
+  }
+}
+
+.plot-container {
+  text-align: justify;
+  background-color: $BACKGROUNDGRAY;
+  margin: 1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  @media (min-width: $mobile-threshold) {
+    padding: 0;
+  }
+}
+
+.people-container {
+  background-color: $BACKGROUNDGRAY;
+  margin: 1rem;
+  border-radius: 1rem;
+
+  padding: 1rem;
+  @media (min-width: $mobile-threshold) {
+    padding: 0;
+  }
+}
+
+.stats-container {
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: space-around;
+  margin: 1rem;
+}

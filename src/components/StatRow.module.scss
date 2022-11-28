@@ -1,48 +1,37 @@
 @use "../models/global-styles.scss" as *;
 .stat-row {
   display: grid;
-  grid-template-areas: "key value";
-  grid-template-rows: auto;
-  grid-template-columns: 1fr 2fr;
-  width: 100%;
+  grid-template-areas:
+    "key"
+    "value";
+  grid-template-rows: auto auto;
+  width: auto;
   height: auto;
   // border-top-left-radius: 1rem;
   // border-bottom-left-radius: 1rem;
-  padding-top: 4px; //
-  padding-bottom: 4px; //
+  // margin-top: 1rem; //
+  // margin-bottom: 1rem; //
+  margin: 1rem;
+  margin-top: 0;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
   line-height: 2rem;
+  text-align: center;
 }
 
 .stat-key {
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-self: center;
   grid-area: key;
   background-color: $BROWN;
-  border-bottom-left-radius: 1rem;
   border-top-left-radius: 1rem;
-  span {
-    display: block;
-    margin: auto;
-    text-align: center;
-    color: white;
-  }
+  border-top-right-radius: 1rem;
+  color: white;
 }
 
 .stat-value {
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-self: center;
   grid-area: value;
+  border: 5px solid $BROWN;
   background-color: $BACKGROUNDGRAY;
   border-bottom-right-radius: 1rem;
-  border-top-right-radius: 1rem;
-
-  span {
-    display: block;
-    margin: auto;
-    text-align: center;
-  }
+  border-bottom-left-radius: 1rem;
 }

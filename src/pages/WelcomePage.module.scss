@@ -1,0 +1,36 @@
+@use "../models/global-styles.scss" as *;
+.welcome-text {
+  display: flex;
+  align-self: center;
+  justify-content: space-around;
+  text-align: center;
+  background-clip: text;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  -webkit-background-clip: text;
+  color: rgba(0, 0, 0, 0.2);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    $ORANGE 0vw 1vw,
+    $BROWN 1vw 2vw,
+    $DARKERSEA 2vw 3vw,
+    $SEA 4vw 5vw
+  );
+  //   background-image: repeating-linear-gradient(
+  //     -45deg,
+  //     $ORANGE 0 25px,
+  //     $BROWN 25px 50px,
+  //     $DARKERSEA 50px 75px,
+  //     $SEA 75px 100px
+  //   );
+
+  b {
+    margin: auto;
+    height: fit-content;
+    font-size: 9vmin;
+    // 8vw);
+  }
+}
+
+.search-form-container {
+}

@@ -1,39 +1,110 @@
 @use "../models/global-styles.scss" as *;
 
 .search-box {
-  border-radius: 15px;
+  border-radius: 1rem;
   background-color: $BACKGROUNDGRAY;
   padding: 1rem;
-  width: 70vw;
+  width: 80vw;
   margin: auto;
-}
-
-input[type="text"],
-input[type="number"],
-select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-input[type="submit"] {
-  width: 100%;
-  background-color: $ORANGE;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: $BROWN;
+  min-width: 18rem;
+  form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  @media (min-width: $mobile-threshold) {
   }
 }
+
+.form-title-control {
+  flex-grow: 4;
+  margin: 0.5rem;
+  input {
+    box-sizing: border-box;
+    padding: 14px 20px;
+    width: 100%;
+    // margin: 8px 8px;
+  }
+  input {
+    // margin: auto;
+  }
+  @media (min-width: $mobile-threshold) {
+  }
+}
+
+.type-year-wrapper {
+  flex-grow: 2;
+  display: flex;
+  flex-wrap: wrap;
+}
+.form-type-control {
+  flex-grow: 1;
+  margin: 0.5rem;
+  min-width: 15rem;
+  select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 20px;
+    // margin: 8px 8px;
+    // margin: 8px 0;
+    display: inline-block;
+  }
+  // width: 10%;
+}
+@media (min-width: $mobile-threshold) {
+}
+
+.form-year-control {
+  flex-grow: 1;
+  margin: 0.5rem;
+  min-width: 15rem;
+  input {
+    box-sizing: border-box;
+    padding: 14px 20px;
+    // margin: 8px 8px;
+  }
+  // width: 10%;
+  input {
+    width: 100%;
+    // width: 90%;
+    // margin: auto;
+  }
+  @media (min-width: $mobile-threshold) {
+  }
+}
+.form-submit-control {
+  flex-grow: 1;
+  margin: 0.5rem;
+  min-width: 15rem;
+  input {
+    box-sizing: border-box;
+    background-color: $ORANGE;
+    flex-grow: 1;
+    color: white;
+    padding: 14px 20px;
+    // margin: 8px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+
+    &:hover {
+      background-color: $BROWN;
+    }
+  }
+  input {
+    // width: 90%;
+    // margin: auto;
+  }
+  @media (min-width: $mobile-threshold) {
+    // flex-basis: 100%;
+  }
+}
+
+// input[type="text"],
+// input[type="number"],
+// select {
+//   //
+// }
 
 // .search-box {
 //   height: inherit;

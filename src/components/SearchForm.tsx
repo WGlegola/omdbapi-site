@@ -71,39 +71,41 @@ const SearchForm = (props) => {
   return (
     <div className={styles["search-box"]}>
       <form onSubmit={formSubmissionHandler}>
-        <div className={styles["form-control"]}>
-          <label htmlFor="name">Movie Name</label>
+        <div className={styles["form-title-control"]}>
+          {/* <label htmlFor="name">Movie Name</label> */}
           <input
             type="text"
             id="name"
             onChange={nameInputChangeHandler}
-            placeholder="Movie Name"
+            placeholder="Production name"
           />
-          {!enteredNameIsValid && (
+          {/* {!enteredNameIsValid && (
             <p className="error-text">Name must not be empty.</p>
-          )}
+          )} */}
         </div>
-        <div className={styles["form-control"]}>
-          <label htmlFor="type">Type</label>
-          <select name="Type" id="type" placeholder="Type">
-            <option value="any">Any</option>
-            <option value="movie">Movie</option>
-            <option value="series">Series</option>
-            <option value="episode">Episode</option>
-          </select>
+        <div className={styles["type-year-wrapper"]}>
+          <div className={styles["form-type-control"]}>
+            {/* <label htmlFor="type">Type</label> */}
+            <select name="Type" id="type" placeholder="Type">
+              <option value="movie">Movie</option>
+              <option value="any">Any</option>
+              <option value="series">Series</option>
+              <option value="episode">Episode</option>
+            </select>
+          </div>
+          <div className={styles["form-year-control"]}>
+            {/* <label htmlFor="year">Year</label> */}
+            <input
+              id="year"
+              type="number"
+              min="1900"
+              max="2099"
+              step="1"
+              placeholder="Year"
+            />
+          </div>
         </div>
-        <div className={styles["form-control"]}>
-          <label htmlFor="year">Year</label>
-          <input
-            id="year"
-            type="number"
-            min="1900"
-            max="2099"
-            step="1"
-            placeholder="Year"
-          />
-        </div>
-        <div className={styles["form-control"]}>
+        <div className={styles["form-submit-control"]}>
           <input type="submit" value="Submit" />
         </div>
       </form>

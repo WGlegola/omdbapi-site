@@ -1,23 +1,58 @@
-.poster-container {
-  //   width: 60%;
-  //   max-width: 4rem;
-  height: 100%;
-  display: inline-block;
-}
-.poster {
-  height: 100%;
-  display: inline-block;
+@use "../models/global-styles.scss" as *;
+
+.anchor-wrapper {
+  width: fit-content;
+  height: fit-content;
 }
 
+.anchor-wrapper a {
+  height: fit-content;
+  width: fit-content;
+  text-decoration: none;
+  :hover {
+    background-color: $DARKERSEA;
+  }
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  color: $ORANGE;
+  max-width: 30vh;
+  background-color: $GRAY;
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+  text-align: justify;
+}
+
+.poster-container {
+  width: fit-content;
+  // max-width: 4rem;
+  margin: auto;
+  // display: inline-block;
+}
+.poster {
+  width: 100%;
+  // display: inline-block;
+  margin: auto;
+  border-radius: 1rem;
+  // margin-top: 1rem;
+}
+.chip-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 .text-container {
   display: inline-block;
 }
 
 .title {
   display: block;
+  text-decoration: none;
 }
 .year {
   display: block;
-}
-.submit {
 }

@@ -18,28 +18,40 @@ import {
 import MoviePane from "./components/MoviePane";
 import MovieSummary, {
   loader as movieSummaryLoader,
-} from "./components/MovieSummary";
+} from "./pages/MovieSummaryPage";
 import { Outlet } from "react-router-dom";
-import RootElement from "./pages/RootElement";
+import FooterInjector from "./pages/FooterInjector";
+import WelcomePage from "./pages/WelcomePage";
+import { redirect } from "react-router-dom";
+import SearchPage from "./pages/SearchPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/omdbapi-site/" element={<RootElement />}>
-      <Route path="search/*" element={<MoviePane />}>
-        <Route
+    <Route path="/" element={<FooterInjector />}>
+      {/* <Route path="*" element={<WelcomePage />} /> */}
+      <Route path="/search" element={<SearchPage />} />
+      <Route
+        path="search/:movieId"
+        element={<MovieSummary />}
+        loader={movieSummaryLoader}
+      >
+        {/* <Route
           path=":movieId"
-          element={<MovieSummary />}
-          loader={movieSummaryLoader}
-        />
+          element={}
+        /> */}
       </Route>
     </Route>
   )
 );
-
+{
+  /* <Navigate to="welcome" replace /> */
+}
 function App() {
   return (
     <React.Fragment>
       <main>
+        {/* <RootElement>
+        </RootElement> */}
         <RouterProvider router={router} />
       </main>
     </React.Fragment>

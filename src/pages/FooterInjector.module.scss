@@ -1,0 +1,26 @@
+@use "../models/global-styles.scss" as *;
+.page-frame {
+  display: grid;
+  grid-template-areas:
+    "content"
+    "footer";
+  grid-template-rows: auto auto;
+  grid-template-columns: auto;
+}
+.page-content {
+  grid-area: content;
+  min-height: 100vh;
+}
+.footer {
+  grid-area: footer;
+  background-color: $GRAY;
+  color: white;
+  text-align: center;
+  margin-top: 1rem;
+  a {
+    color: white;
+    &:hover {
+      color: $ORANGE;
+    }
+  }
+}
