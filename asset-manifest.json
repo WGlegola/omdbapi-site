@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/omdbapi-site/static/css/main.067b0b72.css",
-    "main.js": "/omdbapi-site/static/js/main.82c62a9f.js",
+    "main.css": "/omdbapi-site/static/css/main.f8c39dbe.css",
+    "main.js": "/omdbapi-site/static/js/main.268f9379.js",
     "static/js/787.04ad8a6f.chunk.js": "/omdbapi-site/static/js/787.04ad8a6f.chunk.js",
     "index.html": "/omdbapi-site/index.html",
-    "main.067b0b72.css.map": "/omdbapi-site/static/css/main.067b0b72.css.map",
-    "main.82c62a9f.js.map": "/omdbapi-site/static/js/main.82c62a9f.js.map",
+    "main.f8c39dbe.css.map": "/omdbapi-site/static/css/main.f8c39dbe.css.map",
+    "main.268f9379.js.map": "/omdbapi-site/static/js/main.268f9379.js.map",
     "787.04ad8a6f.chunk.js.map": "/omdbapi-site/static/js/787.04ad8a6f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.067b0b72.css",
-    "static/js/main.82c62a9f.js"
+    "static/css/main.f8c39dbe.css",
+    "static/js/main.268f9379.js"
   ]
 }
