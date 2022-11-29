@@ -8,6 +8,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useNavigate } from "react-router-dom";
 
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import { style } from "@mui/system";
 const MovieList: React.FC = (props) => {
   const movieCtx = useContext(MovieContext);
   const searchCtx = useContext(SearchContext);
@@ -15,7 +17,16 @@ const MovieList: React.FC = (props) => {
   const infinityScrollTrigger = useRef(null);
   const isInfScrInViewport = useIsInViewport(infinityScrollTrigger);
 
+  const scrollToTopButtonVisibilityTrigger = useRef(null);
+  const isScrollToTopButtonVisible = useIsInViewport(
+    scrollToTopButtonVisibilityTrigger
+  );
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     console.log(isInfScrInViewport);
@@ -23,9 +34,27 @@ const MovieList: React.FC = (props) => {
     if (!!!searchCtx.production) navigate("/");
     if (!movieCtx.isAllLoaded) movieCtx.fetchMoreMovies();
   }, [isInfScrInViewport]);
+
+  const scrollToTopHandler = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <React.Fragment>
-      <div className={styles["text-box"]}>
+      <div
+        className={styles["scroll-to-top"]}
+        hidden={isScrollToTopButtonVisible}
+        onClick={scrollToTopHandler}
+      >
+        <ArrowCircleUpIcon fontSize="inherit" />
+      </div>
+      <div
+        className={styles["text-box"]}
+        ref={scrollToTopButtonVisibilityTrigger}
+      >
         <div className={styles["back-button"]} onClick={() => navigate("/")}>
           <ArrowCircleLeftIcon fontSize="inherit" />
         </div>

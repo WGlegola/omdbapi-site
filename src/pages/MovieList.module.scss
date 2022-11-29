@@ -30,3 +30,14 @@
     color: $DARKERSEA;
   }
 }
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 0;
+  right: 1rem;
+  color: $ORANGE;
+  font-size: 4rem;
+  &:hover {
+    color: $BROWN;
+  }
+}

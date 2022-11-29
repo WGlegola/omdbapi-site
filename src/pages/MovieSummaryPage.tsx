@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import MovieData from "../models/movie-data";
 import Chip from "../components/Chip";
@@ -17,6 +17,11 @@ const MovieSummary: React.FC = (props) => {
   const loaderData = useLoaderData() as MovieData;
   const navigate = useNavigate();
   console.log(loaderData);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className={styles["summary-container"]}>
       <div className={styles["header-container"]}>
