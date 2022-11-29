@@ -43,8 +43,7 @@ const MovieList: React.FC = (props) => {
       <div ref={infinityScrollTrigger} className={styles["text-box"]}>
         {movieCtx.isLoading ? <CircularProgress color="inherit" /> : ""}
         <b>
-          {movieCtx.isAllLoaded &&
-            movieCtx.fetchedMovies.length === 0 &&
+          {movieCtx.errorMessage &&
             "Found no productions matching your criteria"}
           {movieCtx.isAllLoaded &&
             movieCtx.fetchedMovies.length !== 0 &&

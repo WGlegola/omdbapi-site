@@ -12,17 +12,23 @@ type SearchResponse = {
   }[];
   totalResults: number;
   Response: string;
+  Error?: string;
 };
 
 export const MovieContext = React.createContext<{
   fetchedMovies: MovieItem[];
   isLoading: boolean;
   isAllLoaded: boolean;
+  lastFetchedMoviesPage: number;
+  errorMessage: string;
   fetchMoreMovies: () => void;
 }>({
   fetchedMovies: [],
   isLoading: false,
   isAllLoaded: false,
+  lastFetchedMoviesPage: 1,
+  errorMessage: "",
+
   fetchMoreMovies: () => {},
 });
 
@@ -35,14 +41,7 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isAllLoaded, setIsAllLoaded] = useState<boolean>(false);
   const [lastFetchedMoviesPage, setLastFetchedMoviesPage] = useState<number>(1);
-  const [noResults, setNoResults] = useState<number>(0);
-
-  // useEffect(() => {
-  //   console.log(noResults);
-  //   if (noResults === fetchedMovies.length) {
-  //     setIsAllLoaded(true);
-  //   }
-  // }, [fetchedMovies, isLoading, isAllLoaded, lastFetchedMoviesPage, noResults]);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   //detecting new search
 
@@ -51,6 +50,7 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
     setIsLoading(false);
     setIsAllLoaded(false);
     setLastFetchedMoviesPage(1);
+    setErrorMessage("");
   }, [searchCtx.production, searchCtx.type, searchCtx.year]);
 
   //function that fetch apropriate datachunk from omdb api
@@ -60,12 +60,12 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
 
     setIsLoading(true);
 
-    if (process.env.NODE_ENV === "development")
-      console.log(`https://www.omdbapi.com/?apikey=64e502b&s=${
-        searchCtx.production
-      }${searchCtx.type !== "any" ? "&type=" + searchCtx.type : ""}${
-        !!searchCtx.year ? "&y=" + searchCtx.year : ""
-      }${"&page=" + lastFetchedMoviesPage}
+    // if (process.env.NODE_ENV === "development")
+    console.log(`https://www.omdbapi.com/?apikey=64e502b&s=${
+      searchCtx.production
+    }${searchCtx.type !== "any" ? "&type=" + searchCtx.type : ""}${
+      !!searchCtx.year ? "&y=" + searchCtx.year : ""
+    }${"&page=" + lastFetchedMoviesPage}
     `);
 
     const response = await fetch(
@@ -82,18 +82,14 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
     }
 
     const data = (await response.json()) as SearchResponse;
-
-    if (process.env.NODE_ENV === "development") console.log(data);
+    console.log(data);
 
     if (data.Response === "False") {
+      setErrorMessage(data.Error);
       setIsAllLoaded(true);
       setIsLoading(false);
       setFetchedMovies([]);
       return;
-    }
-
-    if (lastFetchedMoviesPage === 1) {
-      setNoResults(data.totalResults);
     }
 
     if (lastFetchedMoviesPage !== 100) {
@@ -110,6 +106,10 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
       type: movie.Type,
     }));
 
+    if (+data.totalResults === fetchedMovies.length + newMovies.length) {
+      setIsAllLoaded(true);
+    }
+
     setFetchedMovies([...fetchedMovies, ...newMovies]);
 
     setIsLoading(false);
@@ -121,6 +121,8 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
         fetchedMovies: fetchedMovies,
         isLoading: isLoading,
         isAllLoaded: isAllLoaded,
+        lastFetchedMoviesPage: lastFetchedMoviesPage,
+        errorMessage: errorMessage,
         fetchMoreMovies: fetchMoreMoviesHandler,
       }}
     >

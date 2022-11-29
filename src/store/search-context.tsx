@@ -22,6 +22,7 @@ const SearchContextProvider: React.FC<{ children: React.ReactNode }> = (
   const [year, setYear] = useState<string | undefined>("");
 
   const setSearchHandler = (production: string, type: string, year: string) => {
+    resetFormHandler();
     setProduction(production);
     setType(type);
     setYear(year);
