@@ -60,7 +60,13 @@ const MovieSummary: React.FC = (props) => {
         </div>
         <div className={styles["stats-container"]}>
           {loaderData.ratings.map((item) => {
-            return <StatRow description={item.source} value={item.value} />;
+            return (
+              <StatRow
+                description={item.source}
+                value={item.value}
+                key={item.source}
+              />
+            );
           })}
         </div>
       </div>
@@ -74,7 +80,7 @@ const MovieSummary: React.FC = (props) => {
             <h3>Directed by:</h3>{" "}
             <ul>
               {loaderData.director.split(",").map((item) => {
-                return <li>{item.trim()}</li>;
+                return <li key={item}>{item.trim()}</li>;
               })}
             </ul>
           </div>
@@ -82,7 +88,7 @@ const MovieSummary: React.FC = (props) => {
             <h3>Written by:</h3>
             <ul>
               {loaderData.writer.split(",").map((item) => {
-                return <li>{item.trim()}</li>;
+                return <li key={item}>{item.trim()}</li>;
               })}
             </ul>
           </div>
@@ -90,7 +96,7 @@ const MovieSummary: React.FC = (props) => {
             <h3>Starring:</h3>
             <ul>
               {loaderData.actors.split(",").map((item) => {
-                return <li>{item.trim()}</li>;
+                return <li key={item}>{item.trim()}</li>;
               })}
             </ul>
           </div>

@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./StatRow.module.scss";
 
-const StatRow: React.FC<{ description: string; value: string }> = (props) => {
+const StatRow: React.FC<{
+  description: string;
+  value: string;
+  key?: string;
+}> = (props) => {
   if (props.value) {
     return (
       <div className={styles["stat-row"]}>
