@@ -6,20 +6,22 @@ const Chip: React.FC<{
   content: string | number;
   tooltip?: string;
 }> = (props) => {
-  return (
-    <Tooltip
-      title={props.tooltip}
-      arrow
-      placement="top"
-      disableFocusListener
-      followCursor
-    >
-      <div className={styles["chip"]}>
-        {props.children}
-        <p>{props.content}</p>
-      </div>
-    </Tooltip>
-  );
+  if (props.content) {
+    return (
+      <Tooltip
+        title={props.tooltip}
+        arrow
+        placement="top"
+        disableFocusListener
+        followCursor
+      >
+        <div className={styles["chip"]}>
+          {props.children}
+          <p>{props.content}</p>
+        </div>
+      </Tooltip>
+    );
+  } else return;
 };
 
 export default Chip;

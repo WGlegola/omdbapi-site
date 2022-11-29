@@ -16,7 +16,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 const MovieSummary: React.FC = (props) => {
   const loaderData = useLoaderData() as MovieData;
   const navigate = useNavigate();
-
+  console.log(loaderData);
   return (
     <div className={styles["summary-container"]}>
       <div className={styles["header-container"]}>
