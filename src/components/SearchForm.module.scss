@@ -22,6 +22,21 @@
     box-sizing: border-box;
     padding: 14px 20px;
     width: 100%;
+    &::-webkit-input-placeholder {
+      color: black;
+    }
+    &::-moz-placeholder {
+      color: black;
+    }
+    &:-ms-input-placeholder {
+      color: black;
+    }
+    &::-ms-input-placeholder {
+      color: black;
+    }
+    &::placeholder {
+      color: black;
+    }
   }
 }
 
@@ -50,9 +65,22 @@
   input {
     box-sizing: border-box;
     padding: 14px 20px;
-  }
-  input {
     width: 100%;
+    &::-webkit-input-placeholder {
+      color: black;
+    }
+    &::-moz-placeholder {
+      color: black;
+    }
+    &:-ms-input-placeholder {
+      color: black;
+    }
+    &::-ms-input-placeholder {
+      color: black;
+    }
+    &::placeholder {
+      color: black;
+    }
   }
 }
 .form-submit-control {
