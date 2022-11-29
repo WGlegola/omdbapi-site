@@ -7,18 +7,17 @@
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-}
-
-.anchor-wrapper a {
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  text-decoration: none;
-  :hover {
-    background-color: $DARKERSEA;
+  a {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    text-decoration: none;
+    :hover {
+      background-color: $DARKERSEA;
+    }
   }
 }
 
@@ -27,12 +26,17 @@
   flex-direction: column;
   align-self: center;
   color: $ORANGE;
-  max-width: 30vh;
+  min-width: 40vw;
+  max-width: 60vw;
   background-color: $GRAY;
   border-radius: 1rem;
   margin: 1rem;
   padding: 1rem;
   text-align: justify;
+  @media (min-width: $mobile-threshold) {
+    min-width: 15vw;
+    max-width: 20vw;
+  }
 }
 
 .poster-container {
