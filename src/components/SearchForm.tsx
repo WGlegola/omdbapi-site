@@ -64,19 +64,21 @@ const SearchForm: React.FC = (props) => {
     setIsEnteredNameTouched(true);
     setIsEnteredYearTouched(true);
 
-    if (isEnteredNameValid && isEnteredYearValid) {
-      searchCtx.setSearch(enteredName, enteredType, enteredYear);
+    setTimeout(function () {
+      if (isEnteredNameValid && isEnteredYearValid) {
+        searchCtx.setSearch(enteredName, enteredType, enteredYear);
 
-      setEnteredName("");
-      setIsEnteredNameValid(false);
-      setIsEnteredNameTouched(false);
-      setEnteredType("any");
-      setEnteredYear("");
-      setIsEnteredYearValid(true);
-      setIsEnteredYearTouched(false);
+        setEnteredName("");
+        setIsEnteredNameValid(false);
+        setIsEnteredNameTouched(false);
+        setEnteredType("any");
+        setEnteredYear("");
+        setIsEnteredYearValid(true);
+        setIsEnteredYearTouched(false);
 
-      navigate("/search", { replace: true });
-    }
+        navigate("/search", { replace: true });
+      }
+    }, 1000);
   };
 
   return (
