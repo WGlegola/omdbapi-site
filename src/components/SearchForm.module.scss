@@ -37,6 +37,10 @@
     &::placeholder {
       color: black;
     }
+    &:focus {
+      outline-color: $ORANGE;
+      background-color: rgba($ORANGE, 0.1);
+    }
   }
 }
 
@@ -55,6 +59,11 @@
     box-sizing: border-box;
     padding: 14px 20px;
     display: inline-block;
+    &:focus {
+      border-color: $ORANGE;
+      outline-color: $ORANGE;
+      background-color: rgba($ORANGE, 0.1);
+    }
   }
 }
 
@@ -80,6 +89,10 @@
     }
     &::placeholder {
       color: black;
+    }
+    &:focus {
+      outline-color: $ORANGE;
+      background-color: rgba($ORANGE, 0.1);
     }
   }
 }
