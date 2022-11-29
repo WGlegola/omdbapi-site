@@ -12,10 +12,16 @@ const FooterInjector: React.FC<{ children?: React.ReactNode }> = (props) => {
           {location.pathname === "/" ? <WelcomePage /> : <Outlet />}
         </div>
         <footer className={styles["footer"]}>
-          <h3>
-            Created by Wojciech Glegoła | See source code&nbsp;
-            <a href="https://github.com/WGlegola/omdbapi-site">here</a>
-          </h3>
+          <div>
+            <h3>Created by Wojciech Glegoła</h3>{" "}
+          </div>
+
+          <div>
+            <h3>
+              Check source code&nbsp;
+              <a href="https://github.com/WGlegola/omdbapi-site">here</a>
+            </h3>
+          </div>
         </footer>
       </div>
     </React.Fragment>

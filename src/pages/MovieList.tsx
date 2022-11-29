@@ -18,15 +18,11 @@ const MovieList: React.FC = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(isInfScrInViewport);
     if (!isInfScrInViewport) return;
     if (!!!searchCtx.production) navigate("/");
     if (!movieCtx.isAllLoaded) movieCtx.fetchMoreMovies();
-  }, [
-    isInfScrInViewport,
-    searchCtx.production,
-    searchCtx.type,
-    searchCtx.year,
-  ]);
+  }, [isInfScrInViewport]);
   return (
     <React.Fragment>
       <div className={styles["text-box"]}>
@@ -47,6 +43,7 @@ const MovieList: React.FC = (props) => {
       <div ref={infinityScrollTrigger} className={styles["text-box"]}>
         {movieCtx.isLoading ? <CircularProgress color="inherit" /> : ""}
         <b>
+          test
           {movieCtx.isAllLoaded &&
             movieCtx.fetchedMovies.length === 0 &&
             "Found no productions matching your criteria"}

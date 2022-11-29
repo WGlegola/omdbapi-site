@@ -13,11 +13,18 @@
   min-height: 100vh;
 }
 .footer {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-wrap: wrap;
   grid-area: footer;
   background-color: $GRAY;
   color: white;
   text-align: center;
   margin-top: 1rem;
+  div {
+    margin: 1rem;
+  }
   a {
     color: white;
     &:hover {
