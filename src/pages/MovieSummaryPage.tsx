@@ -34,7 +34,7 @@ const MovieSummary: React.FC = (props) => {
       </div>
       <div className={styles["poster-chip-wrapper"]}>
         <div className={styles["poster-container"]}>
-          <img src={loaderData.posterUrl} />
+          <img src={loaderData.posterUrl} alt="" />
         </div>
         <div className={styles["chip-container"]}>
           <Chip content={loaderData.type} tooltip="Production type">

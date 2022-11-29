@@ -11,7 +11,11 @@ const MovieListItem: React.FC<{ movie: MovieItem; key: string }> = (props) => {
       <Link to={props.movie.id}>
         <div className={styles["movie-card"]}>
           <div className={styles["poster-container"]}>
-            <img className={styles["poster"]} src={props.movie.posterUrl} />
+            <img
+              className={styles["poster"]}
+              src={props.movie.posterUrl}
+              alt=""
+            />
           </div>
           <h2 className={styles["title"]}>{props.movie.title}</h2>
           <h3>{props.movie.year}</h3>

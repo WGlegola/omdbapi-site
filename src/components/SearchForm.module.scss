@@ -96,9 +96,12 @@
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
-
     &:hover {
       background-color: $BROWN;
+    }
+    &:disabled {
+      background-color: $GRAY;
+      cursor: not-allowed;
     }
   }
 }

@@ -1,84 +1,110 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { SearchContext } from "../store/search-context";
 import { useNavigate } from "react-router-dom";
 import styles from "./SearchForm.module.scss";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const SearchForm: React.FC = (props) => {
   const searchCtx = useContext(SearchContext);
   const navigate = useNavigate();
 
-  const [enteredName, setEnteredName] = useState("");
+  const [isSubmitActive, setIsSubmitActive] = useState(true);
+
+  const productionField = useRef<HTMLInputElement>(null);
+  const typeField = useRef<HTMLSelectElement>(null);
+  const yearField = useRef<HTMLInputElement>(null);
+
+  // const [enteredName, setEnteredName] = useState("");
   const [isEnteredNameValid, setIsEnteredNameValid] = useState(false);
   const [isEnteredNameTouched, setIsEnteredNameTouched] = useState(false);
-  const [enteredType, setEnteredType] = useState("any");
-  const [enteredYear, setEnteredYear] = useState("");
+  // const [enteredType, setEnteredType] = useState("any");
+  // const [enteredYear, setEnteredYear] = useState("");
   const [isEnteredYearValid, setIsEnteredYearValid] = useState(true);
   const [isEnteredYearTouched, setIsEnteredYearTouched] = useState(false);
 
-  const validateName = () => {
-    if (enteredName.trim().length > 0) {
-      setIsEnteredNameValid(true);
-    } else {
-      setIsEnteredNameValid(false);
-    }
+  const validateName = (enteredName: string): boolean => {
+    if (enteredName.trim().length > 0) return true;
+    else return false;
   };
 
-  const validateYear = () => {
-    if (/^[0-9]{4}$/.test(enteredYear) || enteredYear === "") {
-      setIsEnteredYearValid(true);
-    } else {
-      setIsEnteredYearValid(false);
-    }
+  const validateYear = (enteredYear: string): boolean => {
+    if (/^[0-9]{4}$/.test(enteredYear) || enteredYear === "") return true;
+    else return false;
   };
+
+  useEffect(() => {
+    console.log("" + isEnteredNameValid + " " + isEnteredYearValid);
+    if (
+      validateName(productionField.current.value) &&
+      validateYear(yearField.current.value)
+    )
+      setIsSubmitActive(true);
+  }, [isEnteredNameValid, isEnteredYearValid]);
 
   const nameInputChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setEnteredName(event.target.value);
+    // setEnteredName(event.target.value);
     if (!isEnteredNameValid) {
-      validateName();
+      if (validateName(event.target.value)) {
+        setIsEnteredNameValid(true);
+      }
     }
   };
 
   const typeSelectChangeHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    setEnteredType(event.target.value);
+    // setEnteredType(event.target.value);
   };
 
   const yearInputChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setEnteredYear(event.target.value);
+    // setEnteredYear(event.target.value);
     if (!isEnteredYearValid) {
-      validateYear();
+      if (validateYear(event.target.value)) {
+        setIsEnteredYearValid(true);
+      }
     }
   };
 
   const formSubmissionHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    validateName();
-    validateYear();
-
     setIsEnteredNameTouched(true);
     setIsEnteredYearTouched(true);
 
-    setTimeout(function () {
-      if (isEnteredNameValid && isEnteredYearValid) {
-        searchCtx.setSearch(enteredName, enteredType, enteredYear);
+    // setTimeout(function () {
+    //   setIsSubmitDelayActive(false);
+    setIsEnteredNameValid(validateName(productionField.current.value));
+    setIsEnteredYearValid(validateYear(yearField.current.value));
 
-        setEnteredName("");
-        setIsEnteredNameValid(false);
-        setIsEnteredNameTouched(false);
-        setEnteredType("any");
-        setEnteredYear("");
-        setIsEnteredYearValid(true);
-        setIsEnteredYearTouched(false);
+    if (
+      validateName(productionField.current.value) &&
+      validateYear(yearField.current.value)
+    ) {
+      searchCtx.setSearch(
+        productionField.current.value,
+        typeField.current.value,
+        yearField.current.value
+      );
 
-        navigate("/search", { replace: true });
-      }
-    }, 1000);
+      // setEnteredName("");
+      setIsEnteredNameValid(false);
+      setIsEnteredNameTouched(false);
+      // setEnteredType("any");
+      // setEnteredYear("");
+      setIsEnteredYearValid(true);
+      setIsEnteredYearTouched(false);
+
+      navigate("/search");
+      // , { replace: true }
+    } else setIsSubmitActive(false);
+
+    if (isEnteredNameValid && isEnteredYearValid) {
+    }
+    // }, 1000);
   };
 
   return (
@@ -90,6 +116,7 @@ const SearchForm: React.FC = (props) => {
             id="name"
             onChange={nameInputChangeHandler}
             placeholder="Production name"
+            ref={productionField}
           />
           {!isEnteredNameValid && isEnteredNameTouched ? (
             <p className="error-text">You must enter search phrase</p>
@@ -104,6 +131,7 @@ const SearchForm: React.FC = (props) => {
               id="type"
               onChange={typeSelectChangeHandler}
               placeholder="Type"
+              ref={typeField}
             >
               <option value="any">Any</option>
               <option value="movie">Movie</option>
@@ -116,6 +144,7 @@ const SearchForm: React.FC = (props) => {
               id="year"
               onChange={yearInputChangeHandler}
               placeholder="Year"
+              ref={yearField}
             />
             {!isEnteredYearValid && isEnteredYearTouched && (
               <p className="error-text">Year must have 4 digits or be empty</p>
@@ -123,7 +152,7 @@ const SearchForm: React.FC = (props) => {
           </div>
         </div>
         <div className={styles["form-submit-control"]}>
-          <input type="submit" value="Submit" />
+          <input type="submit" value={"Submit"} disabled={!isSubmitActive} />
         </div>
       </form>
     </div>
