@@ -15,7 +15,7 @@
   display: flex;
   align-self: center;
   justify-content: center;
-  color: $SEA;
+  color: $ORANGE;
   font-size: 2rem;
 }
 
@@ -35,9 +35,9 @@
   position: fixed;
   bottom: 0;
   right: 1rem;
-  color: $ORANGE;
+  color: $SEA;
   font-size: 4rem;
   &:hover {
-    color: $BROWN;
+    color: $DARKERSEA;
   }
 }

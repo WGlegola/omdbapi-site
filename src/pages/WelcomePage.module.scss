@@ -1,6 +1,12 @@
 @use "../models/global-styles.scss" as *;
 
+@font-face {
+  font-family: "Righteous-Regular";
+  src: url("../fonts/Righteous-Regular.ttf");
+}
+
 .welcome-text {
+  font-family: "Righteous-Regular";
   display: flex;
   align-self: center;
   justify-content: space-around;
