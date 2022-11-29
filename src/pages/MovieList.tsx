@@ -37,7 +37,7 @@ const MovieList: React.FC = (props) => {
       </div>
       <div className={styles["movie-list"]}>
         {movieCtx.fetchedMovies.map((item) => (
-          <MovieListItem movie={item} />
+          <MovieListItem movie={item} key={item.id} />
         ))}
       </div>
       <div ref={infinityScrollTrigger} className={styles["text-box"]}>

@@ -26,19 +26,18 @@
   flex-direction: column;
   align-self: center;
   color: $ORANGE;
-  min-width: 40vw;
-  max-width: 60vw;
+  width: 60vw;
   background-color: $GRAY;
   border-radius: 1rem;
   margin: 1rem;
   padding: 1rem;
-  text-align: justify;
   @media (min-width: $mobile-threshold) {
-    min-width: 15vw;
-    max-width: 20vw;
+    width: 25vw;
+  }
+  @media (min-width: 1400px) {
+    width: 15vw;
   }
 }
-
 .poster-container {
   width: -webkit-fit-content;
   width: -moz-fit-content;
