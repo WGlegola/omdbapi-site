@@ -44,7 +44,6 @@ const SearchForm: React.FC = (props) => {
   const nameInputChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    // setEnteredName(event.target.value);
     if (!isEnteredNameValid) {
       if (validateName(event.target.value)) {
         setIsEnteredNameValid(true);
@@ -52,16 +51,9 @@ const SearchForm: React.FC = (props) => {
     }
   };
 
-  const typeSelectChangeHandler = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    // setEnteredType(event.target.value);
-  };
-
   const yearInputChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    // setEnteredYear(event.target.value);
     if (!isEnteredYearValid) {
       if (validateYear(event.target.value)) {
         setIsEnteredYearValid(true);
@@ -75,8 +67,6 @@ const SearchForm: React.FC = (props) => {
     setIsEnteredNameTouched(true);
     setIsEnteredYearTouched(true);
 
-    // setTimeout(function () {
-    //   setIsSubmitDelayActive(false);
     setIsEnteredNameValid(validateName(productionField.current.value));
     setIsEnteredYearValid(validateYear(yearField.current.value));
 
@@ -90,21 +80,18 @@ const SearchForm: React.FC = (props) => {
         yearField.current.value
       );
 
-      // setEnteredName("");
+      productionField.current.value = "";
       setIsEnteredNameValid(false);
       setIsEnteredNameTouched(false);
-      // setEnteredType("any");
-      // setEnteredYear("");
+
+      typeField.current.value = "any";
+
+      yearField.current.value = "";
       setIsEnteredYearValid(true);
       setIsEnteredYearTouched(false);
 
       navigate("/search");
-      // , { replace: true }
     } else setIsSubmitActive(false);
-
-    if (isEnteredNameValid && isEnteredYearValid) {
-    }
-    // }, 1000);
   };
 
   return (
@@ -126,13 +113,7 @@ const SearchForm: React.FC = (props) => {
         </div>
         <div className={styles["type-year-wrapper"]}>
           <div className={styles["form-type-control"]}>
-            <select
-              name="Type"
-              id="type"
-              onChange={typeSelectChangeHandler}
-              placeholder="Type"
-              ref={typeField}
-            >
+            <select name="Type" id="type" placeholder="Type" ref={typeField}>
               <option value="any">Any</option>
               <option value="movie">Movie</option>
               <option value="series">Series</option>

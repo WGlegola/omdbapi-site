@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import { style } from "@mui/system";
+import SearchForm from "../components/SearchForm";
 const MovieList: React.FC = (props) => {
   const movieCtx = useContext(MovieContext);
   const searchCtx = useContext(SearchContext);
@@ -17,7 +18,7 @@ const MovieList: React.FC = (props) => {
   const infinityScrollTrigger = useRef(null);
   const isInfScrInViewport = useIsInViewport(infinityScrollTrigger);
 
-  const scrollToTopButtonVisibilityTrigger = useRef(null);
+  const scrollToTopButtonVisibilityTrigger = useRef<HTMLDivElement>(null);
   const isScrollToTopButtonVisible = useIsInViewport(
     scrollToTopButtonVisibilityTrigger
   );
@@ -25,8 +26,13 @@ const MovieList: React.FC = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrollBy({
+      top:
+        scrollToTopButtonVisibilityTrigger.current.getBoundingClientRect().top +
+        3,
+    });
+    movieCtx.fetchMoreMovies();
+  }, [searchCtx.production, searchCtx.type, searchCtx.year]);
 
   useEffect(() => {
     console.log(isInfScrInViewport);
@@ -36,14 +42,29 @@ const MovieList: React.FC = (props) => {
   }, [isInfScrInViewport]);
 
   const scrollToTopHandler = () => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
+    // scrollToTopButtonVisibilityTrigger.current.getBoundingClientRect()
+    // scrollIntoView({
+    //   behavior: "smooth",
+    // });
+    // console.log(
+    //   "asdsdd" +
+    //     scrollToTopButtonVisibilityTrigger.current.getBoundingClientRect().top
+    // );
+    // window.scrollTo({
+    //   top: scrollToTopButtonVisibilityTrigger.current.getBoundingClientRect()
+    //     .top,
+    //   left: 0,
+    //   behavior: "smooth",
+    // });
+    window.scrollBy({
+      top: scrollToTopButtonVisibilityTrigger.current.getBoundingClientRect()
+        .top,
       behavior: "smooth",
     });
   };
   return (
     <React.Fragment>
+      <SearchForm />
       <div
         className={styles["scroll-to-top"]}
         hidden={isScrollToTopButtonVisible}

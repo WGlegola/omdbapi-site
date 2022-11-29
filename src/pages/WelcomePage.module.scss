@@ -18,10 +18,10 @@
   color: rgba(0, 0, 0, 0.2);
   background-image: repeating-linear-gradient(
     -45deg,
-    $ORANGE 0vw 1vw,
-    $BROWN 1vw 2vw,
-    $DARKERSEA 2vw 3vw,
-    $SEA 4vw 5vw
+    $ORANGE 0% 5%,
+    $BROWN 5% 10%,
+    $DARKERSEA 10% 15%,
+    $SEA 15% 20%
   );
 
   b {
