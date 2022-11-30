@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
-import { style } from "@mui/system";
 import SearchForm from "../components/SearchForm";
+
 const MovieList: React.FC = (props) => {
   const movieCtx = useContext(MovieContext);
   const searchCtx = useContext(SearchContext);
@@ -37,7 +37,7 @@ const MovieList: React.FC = (props) => {
   useEffect(() => {
     console.log(isInfScrInViewport);
     if (!isInfScrInViewport) return;
-    if (!!!searchCtx.production) navigate("/");
+    if (!searchCtx.production) navigate("/");
     if (!movieCtx.isAllLoaded) movieCtx.fetchMoreMovies();
   }, [isInfScrInViewport]);
 

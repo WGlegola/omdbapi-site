@@ -1,4 +1,4 @@
-type MovieData = {
+interface MovieData {
   awards: string;
   title: string;
   year: number;
@@ -13,7 +13,7 @@ type MovieData = {
   language: string;
   country: string;
   posterUrl: string;
-  ratings?: { source: string; value: string }[];
+  ratings?: Array<{ source: string; value: string }>;
   metascore: number;
   imdbRating: number;
   imdbVotes: string;
@@ -23,6 +23,6 @@ type MovieData = {
   boxOffice: string;
   production: string;
   website: string;
-};
+}
 
 export default MovieData;

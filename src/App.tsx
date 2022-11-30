@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.scss";
 import MovieList from "./pages/MovieList";
 import {
   createBrowserRouter,
@@ -8,10 +7,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import MovieSummary, {
-  loader as movieSummaryLoader,
-} from "./pages/MovieSummaryPage";
+import MovieSummary from "./pages/MovieSummaryPage";
 import FooterInjector from "./pages/FooterInjector";
+import movieLoader from "./loaders/movie-loader";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,7 +18,7 @@ const router = createBrowserRouter(
       <Route
         path="search/:movieId"
         element={<MovieSummary />}
-        loader={movieSummaryLoader}
+        loader={movieLoader}
       ></Route>
     </Route>
   )
@@ -29,9 +27,7 @@ const router = createBrowserRouter(
 function App() {
   return (
     <React.Fragment>
-      <main>
-        <RouterProvider router={router} />
-      </main>
+      <RouterProvider router={router} />
     </React.Fragment>
   );
 }

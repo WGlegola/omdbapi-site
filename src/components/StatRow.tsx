@@ -6,16 +6,14 @@ const StatRow: React.FC<{
   value: string;
   key?: string;
 }> = (props) => {
-  if (props.value) {
-    return (
-      <div className={styles["stat-row"]}>
-        <div className={styles["stat-key"]}>
-          <b>{props.description}</b>
-        </div>
-        <div className={styles["stat-value"]}>{props.value}</div>
+  return (
+    <div className={styles["stat-row"]}>
+      <div className={styles["stat-key"]}>
+        <b>{props.description}</b>
       </div>
-    );
-  } else return;
+      <div className={styles["stat-value"]}>{props.value}</div>
+    </div>
+  );
 };
 
 export default StatRow;

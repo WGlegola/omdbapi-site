@@ -2,7 +2,6 @@ import React, { useContext, useState, useRef, useEffect } from "react";
 import { SearchContext } from "../store/search-context";
 import { useNavigate } from "react-router-dom";
 import styles from "./SearchForm.module.scss";
-import CircularProgress from "@mui/material/CircularProgress";
 
 const SearchForm: React.FC = (props) => {
   const searchCtx = useContext(SearchContext);
@@ -37,8 +36,9 @@ const SearchForm: React.FC = (props) => {
     if (
       validateName(productionField.current.value) &&
       validateYear(yearField.current.value)
-    )
+    ) {
       setIsSubmitActive(true);
+    }
   }, [isEnteredNameValid, isEnteredYearValid]);
 
   const nameInputChangeHandler = (
@@ -105,10 +105,8 @@ const SearchForm: React.FC = (props) => {
             placeholder="Production name"
             ref={productionField}
           />
-          {!isEnteredNameValid && isEnteredNameTouched ? (
+          {!isEnteredNameValid && isEnteredNameTouched && (
             <p className="error-text">You must enter search phrase</p>
-          ) : (
-            ""
           )}
         </div>
         <div className={styles["type-year-wrapper"]}>

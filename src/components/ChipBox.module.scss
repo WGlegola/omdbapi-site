@@ -1,0 +1,9 @@
+@use "../models/global-styles.scss" as *;
+
+.chip-container {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-self: flex-start;
+}

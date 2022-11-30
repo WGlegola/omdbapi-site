@@ -8,9 +8,11 @@ const FooterInjector: React.FC<{ children?: React.ReactNode }> = (props) => {
   return (
     <React.Fragment>
       <div className={styles["page-frame"]}>
-        <div className={styles["page-content"]}>
-          {location.pathname === "/" ? <WelcomePage /> : <Outlet />}
-        </div>
+        <main className={styles["main"]}>
+          <div className={styles["page-content"]}>
+            {location.pathname === "/" ? <WelcomePage /> : <Outlet />}
+          </div>
+        </main>
         <footer className={styles["footer"]}>
           <div>
             <h3>Created by Wojciech Glegoła</h3>{" "}

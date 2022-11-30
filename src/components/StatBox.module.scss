@@ -1,0 +1,6 @@
+@use "../models/global-styles.scss" as *;
+
+.stats-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

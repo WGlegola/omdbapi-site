@@ -8,10 +8,20 @@
   grid-template-rows: auto auto;
   grid-template-columns: auto;
 }
+
+.main {
+  /* grid-row: 2 / 3; */
+  /* grid-area: main; */
+  width: 100%;
+  margin: auto;
+  background: $DARKBLUE;
+}
+
 .page-content {
   grid-area: content;
-  min-height: 101vh;
+  min-height: 110vh;
 }
+
 .footer {
   display: flex;
   justify-content: center;
@@ -21,7 +31,6 @@
   background-color: $GRAY;
   color: white;
   text-align: center;
-  margin-top: 1rem;
   div {
     margin: 1rem;
   }

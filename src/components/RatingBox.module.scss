@@ -1,0 +1,57 @@
+@use "../models/global-styles.scss" as *;
+
+.score-container {
+  // $BACKGROUNDCOLOR: $GRAY;
+  // background-color: $GRAY;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 1rem;
+  margin: 0rem;
+  margin-right: 2rem;
+  margin-left: 2rem;
+  padding: 1rem;
+  color: $DARKERSEA;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  p {
+    color: $SEA;
+    margin: 0 0.5rem 0 0.5rem;
+  }
+  .stats-container {
+    flex-basis: 100%;
+  }
+  //StatRow access walk around
+  > div > div {
+    > div:first-child {
+      background-color: $DARKERSEA;
+    }
+    > div {
+      border-color: $DARKERSEA;
+
+      background-color: $GRAY;
+      color: white;
+    }
+  }
+  @media (min-width: $mobile-threshold) {
+    background-color: $GRAY;
+    margin: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+}
+
+.featured-stat {
+  margin: 1rem;
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 4rem;
+  svg {
+    margin: auto;
+  }
+  p {
+    font-size: 2rem;
+  }
+}

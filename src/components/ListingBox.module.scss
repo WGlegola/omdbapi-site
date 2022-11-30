@@ -1,0 +1,12 @@
+@use "../models/global-styles.scss" as *;
+
+.people-container {
+  background-color: $BACKGROUNDGRAY;
+  margin: 1rem;
+  border-radius: 1rem;
+
+  padding: 1rem;
+  @media (min-width: $mobile-threshold) {
+    padding: 0;
+  }
+}
