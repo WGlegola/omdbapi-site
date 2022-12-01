@@ -38,9 +38,9 @@ const MovieList: React.FC = (props) => {
     fetchLock = 0;
   };
 
-  // useEffect(() => {
-  //   if (movieCtx.isLoading) fetchLock = 0;
-  // }, [movieCtx.isLoading]);
+  useEffect(() => {
+    if (movieCtx.isLoading) fetchLock = 0;
+  }, [movieCtx.isLoading]);
 
   useEffect(() => {
     if (fetchLock === 0) {

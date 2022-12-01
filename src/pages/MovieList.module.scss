@@ -5,7 +5,7 @@
   grid-template-columns: 5rem 1fr;
   color: $ORANGE;
   text-align: center;
-
+  max-width: 1500px;
   @media (min-width: $mobile-threshold) {
     grid-template-columns: 3rem 1fr;
   }

@@ -46,7 +46,7 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const setSearch = (production: string, type: string, year: string) => {
-    // console.log("setIsCalled");
+    console.log("setIsCalled");
     setProductionName(() => production);
     setProductionType(() => type);
     setProductionYUear(() => year);
@@ -60,7 +60,8 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
   const fetchMoreMoviesHandler = async (
     production: string,
     type: string,
-    year: string
+    year: string,
+    lvl = 1
   ) => {
     if (!production) return;
 
@@ -72,10 +73,10 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
     ) {
       setSearch(production, type, year);
       isNewSearch = true;
-      // console.log(production);
-      // console.log(type);
-      // console.log(year);
-      setTimeout(fetchMoreMoviesHandler.bind(production, type, year), 500);
+      setTimeout(
+        fetchMoreMoviesHandler.bind(production, type, year, lvl + 1),
+        500
+      );
       return;
     }
 
