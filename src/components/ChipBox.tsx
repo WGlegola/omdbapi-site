@@ -19,22 +19,6 @@ const ChipBox: React.FC<{
           </Chip>
         );
       })}
-
-      {/* <Chip content={loaderData.type} tooltip="Production type">
-        <MovieIcon fontSize="inherit" />
-      </Chip>
-      <Chip content={loaderData.genre} tooltip="Genre">
-        <FolderCopySharpIcon fontSize="inherit" />
-      </Chip>
-      <Chip content={loaderData.language} tooltip="Production language">
-        <TranslateSharpIcon fontSize="inherit" />
-      </Chip>
-      <Chip content={loaderData.runtime} tooltip="Runtime">
-        <AccessTimeSharpIcon fontSize="inherit" />
-      </Chip>
-      <Chip content={loaderData.released} tooltip="Release date">
-        <CalendarMonthSharpIcon fontSize="inherit" />
-      </Chip> */}
     </div>
   );
 };

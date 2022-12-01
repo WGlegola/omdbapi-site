@@ -1,26 +1,29 @@
 import React from "react";
+// import * as ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
-import { Provider } from "react-redux";
-// import { store } from "./app/store";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.scss";
-import SearchContextProvider from "./store/search-context";
-import { BrowserRouter } from "react-router-dom";
 import MovieContextProvider from "./store/movie-context";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <MovieContextProvider>
+//       <App />
+//     </MovieContextProvider>
+//   </React.StrictMode>,
+//   document.getElementById("root") as HTMLElement
+// );
 
+// const root = ReactDOM.createRoot( document.getElementById('root') as HTMLElement );
+// root.render( <React.StrictMode> <App /> </React.StrictMode> );
 root.render(
   <React.StrictMode>
-    <SearchContextProvider>
-      <MovieContextProvider>
-        {/* <Provider store={store}> */}
-        <App />
-        {/* </Provider> */}
-      </MovieContextProvider>
-    </SearchContextProvider>
+    <MovieContextProvider>
+      <App />
+    </MovieContextProvider>
   </React.StrictMode>
 );
 

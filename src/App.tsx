@@ -14,12 +14,12 @@ import movieLoader from "./loaders/movie-loader";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<FooterInjector />}>
-      <Route path="/search" element={<MovieList />} />
+      <Route path="search" element={<MovieList />}></Route>
       <Route
         path="search/:movieId"
         element={<MovieSummary />}
         loader={movieLoader}
-      ></Route>
+      />
     </Route>
   )
 );

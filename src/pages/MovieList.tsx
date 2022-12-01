@@ -1,11 +1,10 @@
 import React, { useContext, useRef, useEffect } from "react";
-import { SearchContext } from "../store/search-context";
 import MovieListItem from "../components/MovieListItem";
 import styles from "./MovieList.module.scss";
 import { useIsInViewport } from "../hooks/hooks";
 import { MovieContext } from "../store/movie-context";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
@@ -13,7 +12,7 @@ import SearchForm from "../components/SearchForm";
 
 const MovieList: React.FC = (props) => {
   const movieCtx = useContext(MovieContext);
-  const searchCtx = useContext(SearchContext);
+  const [searchParamsObject] = useSearchParams();
 
   const infinityScrollTrigger = useRef(null);
   const isInfScrInViewport = useIsInViewport(infinityScrollTrigger);
@@ -25,43 +24,43 @@ const MovieList: React.FC = (props) => {
 
   const navigate = useNavigate();
 
+  const fetchMovies = () => {
+    movieCtx.fetchMoreMovies(
+      searchParamsObject.get("production"),
+      searchParamsObject.get("type"),
+      searchParamsObject.get("year")
+    );
+  };
+
+  // custom semafor for stopping multiple request until pageNumber in context updates
+  let fetchLock = 0;
   useEffect(() => {
-    window.scrollBy({
-      top:
-        scrollToTopButtonVisibilityTrigger.current.getBoundingClientRect().top +
-        3,
-    });
-    movieCtx.fetchMoreMovies();
-  }, [searchCtx.production, searchCtx.type, searchCtx.year]);
+    if (movieCtx.isLoading) fetchLock = 0;
+  }, [movieCtx.isLoading]);
 
   useEffect(() => {
-    console.log(isInfScrInViewport);
+    if (fetchLock === 0) {
+      fetchLock += 1;
+      fetchMovies();
+    }
+  }, [searchParamsObject]);
+
+  useEffect(() => {
     if (!isInfScrInViewport) return;
-    if (!searchCtx.production) navigate("/");
-    if (!movieCtx.isAllLoaded) movieCtx.fetchMoreMovies();
+    if (!movieCtx.isAllLoaded && fetchLock === 0) {
+      fetchLock += 1;
+      fetchMovies();
+    }
   }, [isInfScrInViewport]);
 
   const scrollToTopHandler = () => {
-    // scrollToTopButtonVisibilityTrigger.current.getBoundingClientRect()
-    // scrollIntoView({
-    //   behavior: "smooth",
-    // });
-    // console.log(
-    //   "asdsdd" +
-    //     scrollToTopButtonVisibilityTrigger.current.getBoundingClientRect().top
-    // );
-    // window.scrollTo({
-    //   top: scrollToTopButtonVisibilityTrigger.current.getBoundingClientRect()
-    //     .top,
-    //   left: 0,
-    //   behavior: "smooth",
-    // });
     window.scrollBy({
       top: scrollToTopButtonVisibilityTrigger.current.getBoundingClientRect()
         .top,
       behavior: "smooth",
     });
   };
+
   return (
     <React.Fragment>
       <SearchForm />
@@ -80,9 +79,12 @@ const MovieList: React.FC = (props) => {
           <ArrowCircleLeftIcon fontSize="inherit" />
         </div>
         <p>
-          Showing results for: {'"' + searchCtx.production + '"'}
-          {searchCtx.type !== "any" && " | type: " + searchCtx.type}
-          {searchCtx.year !== "" && " | year: " + searchCtx.year}
+          Showing results for:{" "}
+          {'"' + searchParamsObject.get("production") + '"'}
+          {searchParamsObject.get("type") &&
+            " | type: " + searchParamsObject.get("type")}
+          {searchParamsObject.get("year") &&
+            " | year: " + searchParamsObject.get("year")}
         </p>
       </div>
       <div className={styles["movie-list"]}>

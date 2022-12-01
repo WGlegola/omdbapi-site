@@ -1,23 +1,18 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
-import { SearchContext } from "../store/search-context";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "./SearchForm.module.scss";
 
 const SearchForm: React.FC = (props) => {
-  const searchCtx = useContext(SearchContext);
   const navigate = useNavigate();
-
   const [isSubmitActive, setIsSubmitActive] = useState(true);
+  const [searchParamsObject] = useSearchParams();
 
   const productionField = useRef<HTMLInputElement>(null);
   const typeField = useRef<HTMLSelectElement>(null);
   const yearField = useRef<HTMLInputElement>(null);
 
-  // const [enteredName, setEnteredName] = useState("");
   const [isEnteredNameValid, setIsEnteredNameValid] = useState(false);
   const [isEnteredNameTouched, setIsEnteredNameTouched] = useState(false);
-  // const [enteredType, setEnteredType] = useState("any");
-  // const [enteredYear, setEnteredYear] = useState("");
   const [isEnteredYearValid, setIsEnteredYearValid] = useState(true);
   const [isEnteredYearTouched, setIsEnteredYearTouched] = useState(false);
 
@@ -32,7 +27,18 @@ const SearchForm: React.FC = (props) => {
   };
 
   useEffect(() => {
-    console.log("" + isEnteredNameValid + " " + isEnteredYearValid);
+    productionField.current.value = searchParamsObject.get("production")
+      ? searchParamsObject.get("production")
+      : "";
+    typeField.current.value = searchParamsObject.get("type")
+      ? searchParamsObject.get("production")
+      : "any";
+    yearField.current.value = searchParamsObject.get("production")
+      ? searchParamsObject.get("year")
+      : "";
+  }, [searchParamsObject]);
+
+  useEffect(() => {
     if (
       validateName(productionField.current.value) &&
       validateYear(yearField.current.value)
@@ -74,11 +80,14 @@ const SearchForm: React.FC = (props) => {
       validateName(productionField.current.value) &&
       validateYear(yearField.current.value)
     ) {
-      searchCtx.setSearch(
-        productionField.current.value,
-        typeField.current.value,
-        yearField.current.value
-      );
+      let params = "production=" + productionField.current.value;
+      params += yearField.current.value
+        ? "&year=" + yearField.current.value
+        : "";
+      params +=
+        typeField.current.value !== "any"
+          ? "&type=" + typeField.current.value
+          : "";
 
       productionField.current.value = "";
       setIsEnteredNameValid(false);
@@ -90,7 +99,7 @@ const SearchForm: React.FC = (props) => {
       setIsEnteredYearValid(true);
       setIsEnteredYearTouched(false);
 
-      navigate("/search");
+      navigate({ pathname: "/search", search: params });
     } else setIsSubmitActive(false);
   };
 
@@ -136,6 +145,9 @@ const SearchForm: React.FC = (props) => {
       </form>
     </div>
   );
+};
+SearchForm.defaultProps = {
+  additionalActionOnSubmit: () => {},
 };
 
 export default SearchForm;

@@ -1,8 +1,6 @@
 @use "../models/global-styles.scss" as *;
 
 .score-container {
-  // $BACKGROUNDCOLOR: $GRAY;
-  // background-color: $GRAY;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -22,7 +20,7 @@
   .stats-container {
     flex-basis: 100%;
   }
-  //StatRow access walk around
+  //StatRow access
   > div > div {
     > div:first-child {
       background-color: $DARKERSEA;

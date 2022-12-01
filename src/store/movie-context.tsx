@@ -1,19 +1,18 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import MovieItem from "../models/movie-item";
-import { SearchContext } from "./search-context";
 
-type SearchResponse = {
-  Search: {
+interface SearchResponse {
+  Search: Array<{
     Poster: string;
     Title: string;
     Type: string;
     Year: number;
     imdbID: string;
-  }[];
+  }>;
   totalResults: number;
   Response: string;
   Error?: string;
-};
+}
 
 export const MovieContext = React.createContext<{
   fetchedMovies: MovieItem[];
@@ -21,60 +20,73 @@ export const MovieContext = React.createContext<{
   isAllLoaded: boolean;
   lastFetchedMoviesPage: number;
   errorMessage: string;
-  fetchMoreMovies: () => void;
+  fetchMoreMovies: (production: string, type: string, year: string) => void;
+  setSearch: (production: string, type: string, year: string) => void;
 }>({
   fetchedMovies: [],
   isLoading: false,
   isAllLoaded: false,
-  lastFetchedMoviesPage: 1,
+  lastFetchedMoviesPage: 0,
   errorMessage: "",
-
   fetchMoreMovies: () => {},
+  setSearch: () => {},
 });
 
 const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
   props
 ) => {
-  const searchCtx = useContext(SearchContext);
+  const [productionName, setProductionName] = useState<string>("");
+  const [productionType, setProductionType] = useState<string>(null);
+  const [productionYear, setProductionYUear] = useState<string>(null);
 
   const [fetchedMovies, setFetchedMovies] = useState<MovieItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isAllLoaded, setIsAllLoaded] = useState<boolean>(false);
-  const [lastFetchedMoviesPage, setLastFetchedMoviesPage] = useState<number>(1);
+  const [lastFetchedMoviesPage, setLastFetchedMoviesPage] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  //detecting new search
+  const setSearch = (production: string, type: string, year: string) => {
+    setProductionName(() => production);
+    setProductionType(() => type);
+    setProductionYUear(() => year);
+    setFetchedMovies(() => []);
+    setIsLoading(() => false);
+    setIsAllLoaded(() => false);
+    setLastFetchedMoviesPage(() => 0);
+    setErrorMessage(() => "");
+  };
 
-  useEffect(() => {
-    setFetchedMovies([]);
-    setIsLoading(false);
-    setIsAllLoaded(false);
-    setLastFetchedMoviesPage(1);
-    setErrorMessage("");
-  }, [searchCtx.production, searchCtx.type, searchCtx.year]);
+  const fetchMoreMoviesHandler = async (
+    production: string,
+    type: string,
+    year: string
+  ) => {
+    if (!production) return;
 
-  //function that fetch apropriate datachunk from omdb api
+    let isNewSearch = false;
+    if (
+      production !== productionName ||
+      type !== productionType ||
+      year !== productionYear
+    ) {
+      setSearch(production, type, year);
+      isNewSearch = true;
+      // console.log(production);
+      // console.log(type);
+      // console.log(year);
+      setTimeout(fetchMoreMoviesHandler.bind(production, type, year), 500);
+      return;
+    }
 
-  const fetchMoreMoviesHandler = async () => {
     if (isAllLoaded) return;
-
     setIsLoading(true);
 
-    // if (process.env.NODE_ENV === "development")
-    console.log(`https://www.omdbapi.com/?apikey=64e502b&s=${
-      searchCtx.production
-    }${searchCtx.type !== "any" ? "&type=" + searchCtx.type : ""}${
-      !!searchCtx.year ? "&y=" + searchCtx.year : ""
-    }${"&page=" + lastFetchedMoviesPage}
-    `);
-
     const response = await fetch(
-      `https://www.omdbapi.com/?apikey=64e502b&s=${searchCtx.production}${
-        searchCtx.type !== "any" ? "&type=" + searchCtx.type : ""
-      }${!!searchCtx.year ? "&y=" + searchCtx.year : ""}${
-        "&page=" + lastFetchedMoviesPage
-      }
-      `
+      `https://www.omdbapi.com/?apikey=64e502b&s=${production}${
+        type ? "&type=" + type : ""
+      }${year ? "&y=" + year : ""}${
+        "&page=" + (isNewSearch ? 1 : lastFetchedMoviesPage + 1)
+      }`
     );
 
     if (!response.ok) {
@@ -82,20 +94,13 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
     }
 
     const data = (await response.json()) as SearchResponse;
-    console.log(data);
 
     if (data.Response === "False") {
-      setErrorMessage(data.Error);
-      setIsAllLoaded(true);
-      setIsLoading(false);
-      setFetchedMovies([]);
+      setErrorMessage(() => data.Error);
+      setIsAllLoaded(() => true);
+      setIsLoading(() => false);
+      setFetchedMovies(() => []);
       return;
-    }
-
-    if (lastFetchedMoviesPage !== 100) {
-      setLastFetchedMoviesPage(lastFetchedMoviesPage + 1);
-    } else {
-      setIsAllLoaded(true);
     }
 
     const newMovies = data.Search.map<MovieItem>((movie) => ({
@@ -106,13 +111,21 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
       type: movie.Type,
     }));
 
-    if (+data.totalResults === fetchedMovies.length + newMovies.length) {
-      setIsAllLoaded(true);
+    if (+data.totalResults <= fetchedMovies.length + newMovies.length) {
+      setIsAllLoaded(() => true);
     }
 
-    setFetchedMovies([...fetchedMovies, ...newMovies]);
+    if (lastFetchedMoviesPage !== 98) {
+      setLastFetchedMoviesPage(
+        (lastFetchedMoviesPage) => lastFetchedMoviesPage + 1
+      );
+    } else {
+      setIsAllLoaded(() => true);
+    }
 
-    setIsLoading(false);
+    setFetchedMovies((fetchedMovies) => [...fetchedMovies, ...newMovies]);
+
+    setIsLoading(() => false);
   };
 
   return (
@@ -124,6 +137,7 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
         lastFetchedMoviesPage: lastFetchedMoviesPage,
         errorMessage: errorMessage,
         fetchMoreMovies: fetchMoreMoviesHandler,
+        setSearch: setSearch,
       }}
     >
       {props.children}

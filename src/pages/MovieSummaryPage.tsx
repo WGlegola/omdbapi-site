@@ -18,7 +18,6 @@ import ChipBox from "../components/ChipBox";
 const MovieSummary: React.FC = (props) => {
   const loaderData = useLoaderData() as MovieData;
   const navigate = useNavigate();
-  console.log(loaderData);
 
   const movieStats = [
     { description: "Awards", value: loaderData.awards },
@@ -87,6 +86,7 @@ const MovieSummary: React.FC = (props) => {
           <h2>Plot</h2>
           {loaderData.plot}
         </div>
+
         <div className={styles["people-listings"]}>
           {loaderData.director !== "N/A" && (
             <ListingBox
