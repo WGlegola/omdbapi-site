@@ -14,16 +14,11 @@ const FooterInjector: React.FC<{ children?: React.ReactNode }> = (props) => {
           </div>
         </main>
         <footer className={styles["footer"]}>
-          <div>
-            <h3>Created by Wojciech Glegoła</h3>{" "}
-          </div>
-
-          <div>
-            <h3>
-              Check source code&nbsp;
-              <a href="https://github.com/WGlegola/omdbapi-site">here</a>
-            </h3>
-          </div>
+          <h3>Created by Wojciech Glegoła</h3>{" "}
+          <h3>
+            Check source code&nbsp;
+            <a href="https://github.com/WGlegola/omdbapi-site">here</a>
+          </h3>
         </footer>
       </div>
     </React.Fragment>

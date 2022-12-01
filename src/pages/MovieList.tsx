@@ -32,16 +32,21 @@ const MovieList: React.FC = (props) => {
     );
   };
 
-  // custom semafor for stopping multiple request until pageNumber in context updates
+  // custom semaphore for stopping multiple request until pageNumber in context updates
   let fetchLock = 0;
-  useEffect(() => {
-    if (movieCtx.isLoading) fetchLock = 0;
-  }, [movieCtx.isLoading]);
+  const resetLock = () => {
+    fetchLock = 0;
+  };
+
+  // useEffect(() => {
+  //   if (movieCtx.isLoading) fetchLock = 0;
+  // }, [movieCtx.isLoading]);
 
   useEffect(() => {
     if (fetchLock === 0) {
       fetchLock += 1;
       fetchMovies();
+      setTimeout(resetLock, 500);
     }
   }, [searchParamsObject]);
 
@@ -49,6 +54,7 @@ const MovieList: React.FC = (props) => {
     if (!isInfScrInViewport) return;
     if (!movieCtx.isAllLoaded && fetchLock === 0) {
       fetchLock += 1;
+      setTimeout(resetLock, 500);
       fetchMovies();
     }
   }, [isInfScrInViewport]);
@@ -71,21 +77,23 @@ const MovieList: React.FC = (props) => {
       >
         <ArrowCircleUpIcon fontSize="inherit" />
       </div>
-      <div
-        className={styles["text-box"]}
-        ref={scrollToTopButtonVisibilityTrigger}
-      >
+      <div className={styles["header-container"]}>
         <div className={styles["back-button"]} onClick={() => navigate("/")}>
           <ArrowCircleLeftIcon fontSize="inherit" />
         </div>
-        <p>
-          Showing results for:{" "}
-          {'"' + searchParamsObject.get("production") + '"'}
-          {searchParamsObject.get("type") &&
-            " | type: " + searchParamsObject.get("type")}
-          {searchParamsObject.get("year") &&
-            " | year: " + searchParamsObject.get("year")}
-        </p>
+        <div
+          className={styles["text-box"]}
+          ref={scrollToTopButtonVisibilityTrigger}
+        >
+          <p>
+            Showing results for:{" "}
+            {'"' + searchParamsObject.get("production") + '"'}
+            {searchParamsObject.get("type") &&
+              " | type: " + searchParamsObject.get("type")}
+            {searchParamsObject.get("year") &&
+              " | year: " + searchParamsObject.get("year")}
+          </p>
+        </div>
       </div>
       <div className={styles["movie-list"]}>
         {movieCtx.fetchedMovies.map((item) => (

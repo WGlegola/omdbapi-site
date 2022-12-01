@@ -93,5 +93,9 @@
 
 .people-listings {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $mobile-threshold) {
+    grid-template-columns: 1fr 1fr;
+  }
 }

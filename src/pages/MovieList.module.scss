@@ -1,5 +1,27 @@
 @use "../models/global-styles.scss" as *;
 
+.header-container {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  color: $ORANGE;
+  text-align: center;
+
+  @media (min-width: $mobile-threshold) {
+    grid-template-columns: 3rem 1fr;
+  }
+  .back-button {
+    color: $SEA;
+    font-size: 3rem;
+    margin-left: 1rem;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    &:hover {
+      color: $DARKERSEA;
+    }
+  }
+}
+
 .movie-list {
   display: flex;
   flex-wrap: wrap;
@@ -16,21 +38,10 @@
   display: flex;
   align-self: center;
   justify-content: center;
+  text-align: center;
   margin: 1rem;
   color: $ORANGE;
   font-size: 2rem;
-}
-
-.back-button {
-  display: flex;
-  align-self: center;
-  justify-content: center;
-  color: $SEA;
-  margin: 1rem;
-  font-size: 3rem;
-  &:hover {
-    color: $DARKERSEA;
-  }
 }
 
 .scroll-to-top {

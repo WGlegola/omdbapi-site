@@ -46,6 +46,7 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const setSearch = (production: string, type: string, year: string) => {
+    // console.log("setIsCalled");
     setProductionName(() => production);
     setProductionType(() => type);
     setProductionYUear(() => year);
@@ -78,7 +79,7 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
       return;
     }
 
-    if (isAllLoaded) return;
+    if (isAllLoaded && !errorMessage) return;
     setIsLoading(true);
 
     const response = await fetch(

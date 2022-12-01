@@ -17,7 +17,7 @@
 
 .page-content {
   grid-area: content;
-  min-height: 110vh;
+  min-height: 100vh;
 }
 
 .footer {
@@ -29,13 +29,19 @@
   background-color: $GRAY;
   color: white;
   text-align: center;
+  min-height: 5vh;
   div {
-    margin: 1rem;
+    padding: 1rem;
   }
   a {
     color: white;
     &:hover {
       color: $ORANGE;
     }
+  }
+  & > h3 {
+    margin: 1rem;
+    // font-size: 2rem;
+    line-height: 2rem;
   }
 }
