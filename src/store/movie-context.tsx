@@ -81,53 +81,58 @@ const MovieContextProvider: React.FC<{ children: React.ReactNode }> = (
     }
 
     if (isAllLoaded && !errorMessage) return;
+
     setIsLoading(true);
 
-    const response = await fetch(
-      `https://www.omdbapi.com/?apikey=64e502b&s=${production}${
-        type ? "&type=" + type : ""
-      }${year ? "&y=" + year : ""}${
-        "&page=" + (isNewSearch ? 1 : lastFetchedMoviesPage + 1)
-      }`
-    );
-
-    if (!response.ok) {
-      throw new Error("Something went wrong");
-    }
-
-    const data = (await response.json()) as SearchResponse;
-
-    if (data.Response === "False") {
-      setErrorMessage(() => data.Error);
-      setIsAllLoaded(() => true);
-      setIsLoading(() => false);
-      setFetchedMovies(() => []);
-      return;
-    }
-
-    const newMovies = data.Search.map<MovieItem>((movie) => ({
-      title: movie.Title,
-      posterUrl: movie.Poster,
-      year: movie.Year,
-      id: movie.imdbID,
-      type: movie.Type,
-    }));
-
-    if (+data.totalResults <= fetchedMovies.length + newMovies.length) {
-      setIsAllLoaded(() => true);
-    }
-
-    if (lastFetchedMoviesPage !== 98) {
-      setLastFetchedMoviesPage(
-        (lastFetchedMoviesPage) => lastFetchedMoviesPage + 1
+    try {
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=64e502b&s=${production}${
+          type ? "&type=" + type : ""
+        }${year ? "&y=" + year : ""}${
+          "&page=" + (isNewSearch ? 1 : lastFetchedMoviesPage + 1)
+        }`
       );
-    } else {
-      setIsAllLoaded(() => true);
+
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+
+      const data = (await response.json()) as SearchResponse;
+
+      if (data.Response === "False") {
+        setErrorMessage(() => data.Error);
+        setIsAllLoaded(() => true);
+        setIsLoading(() => false);
+        setFetchedMovies(() => []);
+        return;
+      }
+
+      const newMovies = data.Search.map<MovieItem>((movie) => ({
+        title: movie.Title,
+        posterUrl: movie.Poster,
+        year: movie.Year,
+        id: movie.imdbID,
+        type: movie.Type,
+      }));
+
+      if (+data.totalResults <= fetchedMovies.length + newMovies.length) {
+        setIsAllLoaded(() => true);
+      }
+
+      if (lastFetchedMoviesPage !== 98) {
+        setLastFetchedMoviesPage(
+          (lastFetchedMoviesPage) => lastFetchedMoviesPage + 1
+        );
+      } else {
+        setIsAllLoaded(() => true);
+      }
+
+      setFetchedMovies((fetchedMovies) => [...fetchedMovies, ...newMovies]);
+
+      setIsLoading(() => false);
+    } catch (error) {
+      console.error(error);
     }
-
-    setFetchedMovies((fetchedMovies) => [...fetchedMovies, ...newMovies]);
-
-    setIsLoading(() => false);
   };
 
   return (
