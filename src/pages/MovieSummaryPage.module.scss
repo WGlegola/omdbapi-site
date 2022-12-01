@@ -67,10 +67,12 @@
   grid-column: 2;
 
   margin: 1rem;
+  margin-top: 0;
   padding: 1rem;
 
   @media (min-width: $mobile-threshold) {
     background-color: $BACKGROUNDGRAY;
+    margin-top: 1rem;
   }
 }
 
@@ -80,10 +82,12 @@
   background-color: $BACKGROUNDGRAY;
   border-radius: 1rem;
   margin: 1rem;
+  margin-top: 0;
   padding: 1rem;
 
   @media (min-width: $mobile-threshold) {
     padding: 0;
+    margin-top: 1rem;
   }
 }
 
